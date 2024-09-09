@@ -1,0 +1,22 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: keumbang-resource
+  datasource:
+    url: jdbc:mariadb://${DB_ADDR}:${DB_PORT}/${DB_TABLE}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+    show-sql: true
+server:
+  port: ${PORT:8080}
+
+
+     

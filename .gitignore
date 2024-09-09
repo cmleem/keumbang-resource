@@ -38,7 +38,3 @@ out/
 
 ### Credentials ###
 .env
-/src/main/resources/*.properties
-/src/main/resources/*.yml
-/src/test/resources/*.properties
-/src/test/resources/*.yml
