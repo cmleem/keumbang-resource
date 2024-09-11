@@ -16,15 +16,15 @@ spring:
         dialect: org.hibernate.dialect.MariaDBDialect
     show-sql: true
 server:
-  port: ${PORT:8080}
+  port: ${PORT:9999}
   
 grpc:
   server:
-    port: ${GRPC_CLIENT_PORT}
+    port: ${GRPC_CLIENT_PORT:50052}
 custom:
   grpc:
     client:
-      port: ${GRPC_SERVER_PORT}
+      port: ${GRPC_SERVER_PORT:50051}
 jwt:
   secret: ${JWT_SECRET}
 
