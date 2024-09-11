@@ -1,33 +1,25 @@
 package backend.keumbangresource.entity;
 
-import java.util.Date;
-
-import org.springframework.data.annotation.CreatedDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @Getter
 public class Invoice {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	String id;
 	
-	@CreatedDate
-	Date orderedAt;
+	LocalDateTime orderedAt;
 	
 	@Column(nullable = false)
 	Long userId;
@@ -53,4 +45,21 @@ public class Invoice {
 	
 	@Column(nullable = false)
 	String address;
+	
+	public Invoice(String id, LocalDateTime orderedAt, Long userId, InvoiceType type,
+			InvoiceState state, Item item, Double amount, Long price, String address) {
+		this.orderedAt = LocalDateTime.now();
+		this.id = type.toString() + "_" + userId + "_"+ this.getOrderedAt();
+		this.userId = userId;
+		this.type = type;
+		this.state = state;
+		this.item = item;
+		this.amount = amount;
+		this.price = price;
+		this.address = address;
+	}
+	
+	public void updateState(InvoiceState newState) {
+		this.state = newState;
+	}
 }
