@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "backend.keumbangresource.grpc.token";
+option java_outer_classname = "TokenProto";
+
+service TokenService {
+	rpc GetUser (TokenRequestProto) returns (TokenResponseProto);
+}
+
+message TokenRequestProto {
+	string access = 1;
+}
+
+message UserResponseProto {
+	int64 id = 1;
+	string username = 2;
+	string role = 3;
+}
+
+message TokenResponseProto {
+	bool isValid = 1;
+	UserResponseProto user = 2;
+}
